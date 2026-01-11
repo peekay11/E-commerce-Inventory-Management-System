@@ -9,59 +9,74 @@ store_room = []
 
 
 def check_items():
+    print("checking  items ...")
     global store_room
     print(store_room)
+    print("Total Inventory :" , len(store_room))
 
 def add_items(list_items):
+    print("adding  items ...")
+
     global store_room
-    store_room.append(list_items)
-    print("success")
+    for item in list_items:
+        store_room.append(item)
+        print("success")
     print("items added : ", list_items)
+    print("Total Inventory :" , len(store_room))
+
 
 def rename_items(prev_name , new_name):
-     global store_room
-     found = False
-     for i in range(len(store_room)):
-    
-         for item in store_room[i]:
-            if item == prev_name:
-                item = new_name
+    print("renaming items ...")
 
+     #used index to rename the item insead of its temporary value in rename items function 
 
-                print("success")
-                found = True
-
-                print(prev_name ,"renamed to ", new_name)
-            if  not found:
-                print("item not found")
-    
-def remove_items(item_names):
     global store_room
-    print("before",store_room)
+    found = False
+    
+    if prev_name in store_room:
+                    found_ind = store_room.index(prev_name)
+                    store_room[found_ind] = new_name
+                    print("renamed..")
+                    print(prev_name ," : renamed to : ", new_name)
+    else:
+            print(prev_name," not found")
+                    
+                    
+    
+                
+               
+    print("Total Inventory :" , len(store_room))
 
-    for j in range(len(store_room)):
-        for k in range(len(item_names)):
+def remove_items(item_names):
+    print("removing items ...")
 
+    global store_room
 
-         for item in store_room[j]:
-            for name in item_names[k]:
-                while k < len(item_names):
-                    if name[k] == item[j]:
-                        removed = store_room.pop(j)
-                        print("removed :" ,removed)
-                        print("after",store_room)
+    for name in item_names:
+                    if name in store_room:
+                        store_room.remove(name)
+                        
+                        # print("removing ... :" ,removed)
+                        print("store room results :",store_room)
                         # print("found")
-                        break
-                else:
-                    print("not found")
+                        
+                    
+                    else:
+                         print(name  ,": not in store room " )           
+    print("Total Inventory :" , len(store_room))
 
     
     
 
 
+check_items()
 
-add_items(["banana", "apple"])
-rename_items("banana","watermelon" )
-remove_items(["banana","apple"])
+tech_inventory =  ["iPhone 15", "MacBook Air", "Galaxy S23",  "Pixel 8", "iPad Pro", "AirPods Max", "Sony Headphones", "Apple Watch", "Kindle", "Dell XPS"]
+
+
+add_items(tech_inventory)
+remove_items(["Kindle", "Dell XPS", "banana"])
+rename_items("iPhone 15","iPhone 17")
+
 
 check_items()
