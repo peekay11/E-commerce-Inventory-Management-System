@@ -1,7 +1,7 @@
 #store room 
 #check items in store rom 
 # add items to the storeroom 
-#rename items in store  
+#rename items in store room  
 # remove items in store room 
 
 
